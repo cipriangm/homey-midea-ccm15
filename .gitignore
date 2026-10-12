@@ -1,0 +1,13 @@
+.tools/
+.homeybuild/
+node_modules/
+.pnpm-store/
+*.zip
+*.log
+env.json
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+.DS_Store

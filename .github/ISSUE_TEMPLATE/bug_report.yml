@@ -1,0 +1,39 @@
+name: Bug report
+description: Report a problem with gateway discovery, monitoring or control.
+title: '[Bug] '
+body:
+  - type: markdown
+    attributes:
+      value: |
+        This app supports the CCM15 local gateway. Remove credentials, local network addresses and personal room names from any logs or screenshots.
+  - type: input
+    id: app-version
+    attributes:
+      label: App version
+      placeholder: 'For example: 0.1.13'
+    validations:
+      required: true
+  - type: input
+    id: homey
+    attributes:
+      label: Homey model and firmware
+      placeholder: Homey Pro model and firmware version
+    validations:
+      required: true
+  - type: input
+    id: gateway
+    attributes:
+      label: Gateway and indoor hardware
+      description: Include any known CCM15 firmware label and indoor type. Do not include MAC addresses or serial numbers.
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: What happened and how to reproduce it
+      description: Describe the action, expected result and actual result.
+    validations:
+      required: true
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Sanitized error or command status
+      description: Include the reported error or confirmation status, if available.

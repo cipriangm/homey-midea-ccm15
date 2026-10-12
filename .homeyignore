@@ -1,0 +1,16 @@
+.tools/
+tests/
+docs/
+scripts/
+node_modules/
+.git/
+.homeybuild/
+.pnpm-store/
+*.zip
+assets/images/source/
+drivers/indoor/assets/images/source/
+README.md
+.github/
+CONTRIBUTING.md
+SECURITY.md
+CHANGELOG.md

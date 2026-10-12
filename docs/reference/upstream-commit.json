@@ -1,0 +1,125 @@
+{
+  "sha": "4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+  "node_id": "C_kwDOKFzNyNoAKDRkYzVjOGRmMDUzMTU0MWE0N2JlM2JjYjdhZDMzYjU3Yjc2NjVmNmY",
+  "commit": {
+    "author": {
+      "name": "github-actions[bot]",
+      "email": "41898282+github-actions[bot]@users.noreply.github.com",
+      "date": "2026-07-04T01:32:28Z"
+    },
+    "committer": {
+      "name": "GitHub",
+      "email": "noreply@github.com",
+      "date": "2026-07-04T01:32:28Z"
+    },
+    "message": "chore(main): release 1.1.2 (#66)\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+    "tree": {
+      "sha": "8ae822d7e52beb412d14992cfd2f02e25321a7b5",
+      "url": "https://api.github.com/repos/HomeOps/py-ccm15/git/trees/8ae822d7e52beb412d14992cfd2f02e25321a7b5"
+    },
+    "url": "https://api.github.com/repos/HomeOps/py-ccm15/git/commits/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+    "comment_count": 0,
+    "verification": {
+      "verified": true,
+      "reason": "valid",
+      "signature": "-----BEGIN PGP SIGNATURE-----\n\nwsFcBAABCAAQBQJqSGKsCRC1aQ7uu5UhlAAATY4QABaKIv3vH9RbHHJhqxzbUNO4\nhsxJgHz02Q6S5pP0v4ViPxp/gvhc8dVvRlp8y8gFP4Uh3c4BtssYmuHxbujtSA4s\n4tK2/64yoveY4vF8yRwhB7t1495SahFx4+Skm2aSArhoibE3otn0/2lZK2HJdOeL\na5eT1UAA9easHcT/HMJoJ9NJ4SlPeCniA4FaaviJQBlNI/aTjqKXsmmOJTvnH3gT\n2V4sWpXFfzxCMT1xjmS2VdFtGaQRR742OtvaZvafQ/RyHlam8i0B1UbtpQN3x3Wh\nsFvVteVACnmKBuYjZGO4ZoQHo9h+5IW2vsfzDBjsHczjad+0zwY97DyHf03nbvO8\n+QtZZzljRfX3VQioRcUIacdzyyRi+H3Ted2P59o7lwASUlSgdd++er9GJA6VejHb\nF1tAYNWvRvHAzTUZ2hzYskmh/D0vCuTtnsyMh52pzGfErS4P/Tzwwa55PdJ83aeI\n9kg0I3jSaqwJzzCWnMbckUt58iSMQJFHx8VJvwrOCU02bsyIJJm4Ag2Q4E8RRbqP\n/C2aob1in1DeNjF5QnJXjCGkRvy3IowBXgLAG38Ct3cEEU5CD/NOT2+s0doNNBbJ\n97YAFfSbrDYGt0PNnWER9r+cZGcCVUa5hee6WMn1R7srJpvlE1I77LR/XY3k1WZ8\nva1B1OUtLy6l1Qq0O9+J\n=CBoE\n-----END PGP SIGNATURE-----\n",
+      "payload": "tree 8ae822d7e52beb412d14992cfd2f02e25321a7b5\nparent 20ad49d00b83367b5ce50e946a213baf1fb1128c\nauthor github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com> 1783128748 -0600\ncommitter GitHub <noreply@github.com> 1783128748 -0600\n\nchore(main): release 1.1.2 (#66)\n\nCo-authored-by: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>",
+      "verified_at": "2026-07-04T01:32:28Z"
+    }
+  },
+  "url": "https://api.github.com/repos/HomeOps/py-ccm15/commits/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+  "html_url": "https://github.com/HomeOps/py-ccm15/commit/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+  "comments_url": "https://api.github.com/repos/HomeOps/py-ccm15/commits/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/comments",
+  "author": {
+    "login": "github-actions[bot]",
+    "id": 41898282,
+    "node_id": "MDM6Qm90NDE4OTgyODI=",
+    "avatar_url": "https://avatars.githubusercontent.com/in/15368?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/github-actions%5Bbot%5D",
+    "html_url": "https://github.com/apps/github-actions",
+    "followers_url": "https://api.github.com/users/github-actions%5Bbot%5D/followers",
+    "following_url": "https://api.github.com/users/github-actions%5Bbot%5D/following{/other_user}",
+    "gists_url": "https://api.github.com/users/github-actions%5Bbot%5D/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/github-actions%5Bbot%5D/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/github-actions%5Bbot%5D/subscriptions",
+    "organizations_url": "https://api.github.com/users/github-actions%5Bbot%5D/orgs",
+    "repos_url": "https://api.github.com/users/github-actions%5Bbot%5D/repos",
+    "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
+    "type": "Bot",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "web-flow",
+    "id": 19864447,
+    "node_id": "MDQ6VXNlcjE5ODY0NDQ3",
+    "avatar_url": "https://avatars.githubusercontent.com/u/19864447?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/web-flow",
+    "html_url": "https://github.com/web-flow",
+    "followers_url": "https://api.github.com/users/web-flow/followers",
+    "following_url": "https://api.github.com/users/web-flow/following{/other_user}",
+    "gists_url": "https://api.github.com/users/web-flow/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/web-flow/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/web-flow/subscriptions",
+    "organizations_url": "https://api.github.com/users/web-flow/orgs",
+    "repos_url": "https://api.github.com/users/web-flow/repos",
+    "events_url": "https://api.github.com/users/web-flow/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/web-flow/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "20ad49d00b83367b5ce50e946a213baf1fb1128c",
+      "url": "https://api.github.com/repos/HomeOps/py-ccm15/commits/20ad49d00b83367b5ce50e946a213baf1fb1128c",
+      "html_url": "https://github.com/HomeOps/py-ccm15/commit/20ad49d00b83367b5ce50e946a213baf1fb1128c"
+    }
+  ],
+  "stats": {
+    "total": 11,
+    "additions": 9,
+    "deletions": 2
+  },
+  "files": [
+    {
+      "sha": "53b7bc9c471c6855bd849a67c987be977288bff3",
+      "filename": ".release-please-manifest.json",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/HomeOps/py-ccm15/blob/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/.release-please-manifest.json",
+      "raw_url": "https://github.com/HomeOps/py-ccm15/raw/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/.release-please-manifest.json",
+      "contents_url": "https://api.github.com/repos/HomeOps/py-ccm15/contents/.release-please-manifest.json?ref=4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+      "patch": "@@ -1,3 +1,3 @@\n {\n-  \".\": \"1.1.1\"\n+  \".\": \"1.1.2\"\n }"
+    },
+    {
+      "sha": "e2cd1d26525db17069dbb4b3322c7fc6edac83c9",
+      "filename": "CHANGELOG.md",
+      "status": "modified",
+      "additions": 7,
+      "deletions": 0,
+      "changes": 7,
+      "blob_url": "https://github.com/HomeOps/py-ccm15/blob/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/CHANGELOG.md",
+      "raw_url": "https://github.com/HomeOps/py-ccm15/raw/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/CHANGELOG.md",
+      "contents_url": "https://api.github.com/repos/HomeOps/py-ccm15/contents/CHANGELOG.md?ref=4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+      "patch": "@@ -1,5 +1,12 @@\n # Changelog\n \n+## [1.1.2](https://github.com/HomeOps/py-ccm15/compare/v1.1.1...v1.1.2) (2026-07-04)\n+\n+\n+### Performance Improvements\n+\n+* reuse slave device instances across polls ([#65](https://github.com/HomeOps/py-ccm15/issues/65)) ([20ad49d](https://github.com/HomeOps/py-ccm15/commit/20ad49d00b83367b5ce50e946a213baf1fb1128c))\n+\n ## [1.1.1](https://github.com/HomeOps/py-ccm15/compare/v1.1.0...v1.1.1) (2026-07-02)\n \n "
+    },
+    {
+      "sha": "21e374ee2f93a799e0a4608fdc341c0a7e2e22dc",
+      "filename": "pyproject.toml",
+      "status": "modified",
+      "additions": 1,
+      "deletions": 1,
+      "changes": 2,
+      "blob_url": "https://github.com/HomeOps/py-ccm15/blob/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/pyproject.toml",
+      "raw_url": "https://github.com/HomeOps/py-ccm15/raw/4dc5c8df0531541a47be3bcb7ad33b57b7665f6f/pyproject.toml",
+      "contents_url": "https://api.github.com/repos/HomeOps/py-ccm15/contents/pyproject.toml?ref=4dc5c8df0531541a47be3bcb7ad33b57b7665f6f",
+      "patch": "@@ -4,7 +4,7 @@ build-backend = \"setuptools.build_meta\"\n \n [project]\n name = \"py_ccm15\"\n-version = \"1.1.1\"\n+version = \"1.1.2\"\n description = \"A package to control Midea CCM15 data converter modules\"\n readme = \"README.md\"\n license = \"MIT\""
+    }
+  ]
+}

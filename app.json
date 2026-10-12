@@ -1,0 +1,2330 @@
+{
+  "id": "ro.ciprian.midea.ccm15",
+  "version": "0.1.13",
+  "compatibility": ">=12.0.1",
+  "sdk": 3,
+  "runtime": "nodejs",
+  "platforms": [
+    "local"
+  ],
+  "name": {
+    "en": "Midea"
+  },
+  "description": {
+    "en": "Comfort in every room, with local VRF control"
+  },
+  "category": [
+    "climate"
+  ],
+  "brandColor": "#126E82",
+  "author": {
+    "name": "Ciprian"
+  },
+  "support": "mailto:legaturi.ace7b@icloud.com",
+  "permissions": [],
+  "drivers": [
+    {
+      "id": "indoor",
+      "name": {
+        "en": "Midea CCM15 indoor unit"
+      },
+      "class": "thermostat",
+      "platforms": [
+        "local"
+      ],
+      "connectivity": [
+        "lan"
+      ],
+      "capabilities": [
+        "onoff",
+        "measure_temperature",
+        "target_temperature",
+        "ccm15_mode",
+        "ccm15_fan",
+        "ccm15_connected",
+        "ccm15_error",
+        "ccm15_mode_locked",
+        "ccm15_fan_locked",
+        "ccm15_remote_locked",
+        "ccm15_cool_limit",
+        "ccm15_heat_limit",
+        "ccm15_locked_mode",
+        "ccm15_locked_fan",
+        "ccm15_unit",
+        "ccm15_last_seen",
+        "alarm_generic",
+        "ccm15_swing_state",
+        "ccm15_heater_state",
+        "ccm15_mode_restriction",
+        "ccm15_fan_restriction",
+        "ccm15_cooling_limit_control",
+        "ccm15_heating_limit_control",
+        "ccm15_remote_lock_control",
+        "ccm15_command_status",
+        "ccm15_command_detail",
+        "ccm15_fault_label",
+        "ccm15_reported_mode",
+        "ccm15_reported_fan",
+        "ccm15_reported_target",
+        "ccm15_reported_power",
+        "ccm15_cooling_limit_status",
+        "ccm15_heating_limit_status",
+        "ccm15_mode_restriction_status",
+        "ccm15_fan_restriction_status",
+        "thermostat_mode"
+      ],
+      "capabilitiesOptions": {
+        "target_temperature": {
+          "min": 17,
+          "max": 30,
+          "step": 1
+        },
+        "measure_temperature": {
+          "decimals": 1
+        },
+        "thermostat_mode": {
+          "title": {
+            "en": "Operating mode"
+          },
+          "values": [
+            {
+              "id": "cool",
+              "title": {
+                "en": "Cool"
+              }
+            },
+            {
+              "id": "heat",
+              "title": {
+                "en": "Heat"
+              }
+            },
+            {
+              "id": "dry",
+              "title": {
+                "en": "Dry"
+              }
+            },
+            {
+              "id": "fan",
+              "title": {
+                "en": "Fan only"
+              }
+            },
+            {
+              "id": "off",
+              "title": {
+                "en": "Off"
+              }
+            },
+            {
+              "id": "auto",
+              "title": {
+                "en": "Auto"
+              }
+            },
+            {
+              "id": "unknown",
+              "title": {
+                "en": "Unknown"
+              }
+            }
+          ]
+        }
+      },
+      "pair": [
+        {
+          "id": "gateway"
+        },
+        {
+          "id": "list_devices",
+          "template": "list_devices",
+          "navigation": {
+            "next": "add_devices",
+            "prev": "gateway"
+          }
+        },
+        {
+          "id": "add_devices",
+          "template": "add_devices"
+        }
+      ],
+      "settings": [
+        {
+          "id": "host",
+          "type": "text",
+          "label": {
+            "en": "Gateway IP / hostname"
+          },
+          "value": ""
+        },
+        {
+          "id": "port",
+          "type": "number",
+          "label": {
+            "en": "HTTP port"
+          },
+          "value": 80,
+          "min": 1,
+          "max": 65535
+        },
+        {
+          "id": "enable_control",
+          "type": "checkbox",
+          "label": {
+            "en": "Enable device control"
+          },
+          "value": false
+        },
+        {
+          "id": "extras_policy",
+          "type": "dropdown",
+          "label": {
+            "en": "Gateway control compatibility"
+          },
+          "value": "blocked",
+          "values": [
+            {
+              "id": "blocked",
+              "label": {
+                "en": "Unverified — control disabled"
+              }
+            },
+            {
+              "id": "preserve",
+              "label": {
+                "en": "Standard CCM15 — preserve settings"
+              }
+            },
+            {
+              "id": "omit",
+              "label": {
+                "en": "No swing or auxiliary heater"
+              }
+            }
+          ],
+          "hint": {
+            "en": "Confirm your gateway firmware before enabling control. Standard CCM15 keeps the reported swing and auxiliary heater states; it does not enable optional hardware."
+          }
+        },
+        {
+          "id": "heater_supported",
+          "type": "checkbox",
+          "label": {
+            "en": "Indoor unit has an auxiliary electric heater"
+          },
+          "value": false
+        },
+        {
+          "id": "password",
+          "type": "password",
+          "label": {
+            "en": "CCM15 numeric password (optional)"
+          },
+          "value": ""
+        },
+        {
+          "id": "start_mode",
+          "type": "dropdown",
+          "label": {
+            "en": "First start mode (when no previous mode known)"
+          },
+          "value": "cool",
+          "values": [
+            {
+              "id": "cool",
+              "label": {
+                "en": "Cool"
+              }
+            },
+            {
+              "id": "heat",
+              "label": {
+                "en": "Heat"
+              }
+            },
+            {
+              "id": "dry",
+              "label": {
+                "en": "Dry"
+              }
+            },
+            {
+              "id": "fan",
+              "label": {
+                "en": "Fan only"
+              }
+            },
+            {
+              "id": "auto",
+              "label": {
+                "en": "Auto"
+              }
+            }
+          ]
+        },
+        {
+          "id": "vrf_policy",
+          "type": "dropdown",
+          "label": {
+            "en": "Shared outdoor mode protection"
+          },
+          "value": "none",
+          "values": [
+            {
+              "id": "none",
+              "label": {
+                "en": "No shared group configured"
+              }
+            },
+            {
+              "id": "heat_pump",
+              "label": {
+                "en": "Single-mode VRF (Heat Pump)"
+              }
+            }
+          ],
+          "hint": {
+            "en": "For a shared heat-pump outdoor unit, configure all indoor addresses on its refrigerant circuit. The app prevents incompatible Heat and Cool requests inside that group."
+          }
+        },
+        {
+          "id": "vrf_group_slots",
+          "type": "text",
+          "label": {
+            "en": "Indoor slots on this outdoor (example: a0,a1,a2)"
+          },
+          "value": ""
+        },
+        {
+          "id": "indoor_type",
+          "type": "dropdown",
+          "label": {
+            "en": "Indoor unit type"
+          },
+          "value": "unknown",
+          "values": [
+            {
+              "id": "unknown",
+              "label": {
+                "en": "Not configured"
+              }
+            },
+            {
+              "id": "ducted",
+              "label": {
+                "en": "Ducted — no swing control"
+              }
+            },
+            {
+              "id": "wall_split",
+              "label": {
+                "en": "Wall split — swing control"
+              }
+            }
+          ]
+        },
+        {
+          "id": "gateway_reported_name",
+          "type": "label",
+          "label": {
+            "en": "Gateway reported name"
+          },
+          "value": "Not read yet",
+          "hint": {
+            "en": "Reported by the gateway; some firmware uses this field for its version text."
+          }
+        },
+        {
+          "id": "gateway_network_info",
+          "type": "label",
+          "label": {
+            "en": "Gateway network information"
+          },
+          "value": "Not read yet",
+          "hint": {
+            "en": "Read from CCM15. This does not change its network settings."
+          }
+        },
+        {
+          "id": "gateway_mac_info",
+          "type": "label",
+          "label": {
+            "en": "Gateway network identifier"
+          },
+          "value": "Not read yet",
+          "hint": {
+            "en": "ARP identifier when available on the local network."
+          }
+        },
+        {
+          "id": "gateway_indoor_name",
+          "type": "label",
+          "label": {
+            "en": "Indoor name in CCM15"
+          },
+          "value": "Not read yet",
+          "hint": {
+            "en": "The configured gateway label; your Homey device name is kept independently."
+          }
+        },
+        {
+          "id": "gateway_areas",
+          "type": "label",
+          "label": {
+            "en": "CCM15 display groups"
+          },
+          "value": "Not read yet",
+          "hint": {
+            "en": "Display groups configured in CCM15. These do not define the refrigerant circuit or shared outdoor mode protection."
+          }
+        }
+      ],
+      "images": {
+        "small": "/drivers/indoor/assets/images/small.png",
+        "large": "/drivers/indoor/assets/images/large.png",
+        "xlarge": "/drivers/indoor/assets/images/xlarge.png"
+      }
+    }
+  ],
+  "capabilities": {
+    "ccm15_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Operating mode"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": null,
+      "values": [
+        {
+          "id": "cool",
+          "title": {
+            "en": "Cool"
+          }
+        },
+        {
+          "id": "heat",
+          "title": {
+            "en": "Heat"
+          }
+        },
+        {
+          "id": "dry",
+          "title": {
+            "en": "Dry"
+          }
+        },
+        {
+          "id": "fan",
+          "title": {
+            "en": "Fan only"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Off"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Unknown"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_fan": {
+      "type": "enum",
+      "title": {
+        "en": "Fan speed"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "low",
+          "title": {
+            "en": "Low"
+          }
+        },
+        {
+          "id": "medium",
+          "title": {
+            "en": "Medium"
+          }
+        },
+        {
+          "id": "high",
+          "title": {
+            "en": "High"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Off — unit stopped"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Unknown"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_connected": {
+      "type": "boolean",
+      "title": {
+        "en": "Connected"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_error": {
+      "type": "number",
+      "title": {
+        "en": "Unit fault code"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "min": 0,
+      "max": 63,
+      "step": 1,
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_swing": {
+      "type": "boolean",
+      "title": {
+        "en": "Swing"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_heater": {
+      "type": "boolean",
+      "title": {
+        "en": "Auxiliary heater"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_mode_locked": {
+      "type": "boolean",
+      "title": {
+        "en": "Mode locked"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_fan_locked": {
+      "type": "boolean",
+      "title": {
+        "en": "Fan locked"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_remote_locked": {
+      "type": "boolean",
+      "title": {
+        "en": "Wireless remote control locked"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_cool_limit": {
+      "type": "number",
+      "title": {
+        "en": "Cooling lower limit"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "units": {
+        "en": "°C"
+      },
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_heat_limit": {
+      "type": "number",
+      "title": {
+        "en": "Heating upper limit"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "units": {
+        "en": "°C"
+      },
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_locked_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Locked mode code"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "values": [
+        {
+          "id": "0",
+          "title": {
+            "en": "No reported mode"
+          }
+        },
+        {
+          "id": "1",
+          "title": {
+            "en": "Cool"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Heat"
+          }
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "Unknown"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_locked_fan": {
+      "type": "enum",
+      "title": {
+        "en": "Locked fan code"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": null,
+      "values": [
+        {
+          "id": "0",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "1",
+          "title": {
+            "en": "Unknown (1)"
+          }
+        },
+        {
+          "id": "2",
+          "title": {
+            "en": "Low"
+          }
+        },
+        {
+          "id": "3",
+          "title": {
+            "en": "Medium"
+          }
+        },
+        {
+          "id": "4",
+          "title": {
+            "en": "High"
+          }
+        },
+        {
+          "id": "5",
+          "title": {
+            "en": "Off"
+          }
+        },
+        {
+          "id": "6",
+          "title": {
+            "en": "Unknown (6)"
+          }
+        },
+        {
+          "id": "7",
+          "title": {
+            "en": "Unknown (7)"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_unit": {
+      "type": "enum",
+      "title": {
+        "en": "Controller display unit"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "values": [
+        {
+          "id": "C",
+          "title": {
+            "en": "Celsius"
+          }
+        },
+        {
+          "id": "F",
+          "title": {
+            "en": "Fahrenheit"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_last_seen": {
+      "type": "string",
+      "title": {
+        "en": "Last successful read (UTC)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_swing_state": {
+      "type": "boolean",
+      "title": {
+        "en": "Reported swing state"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_heater_state": {
+      "type": "boolean",
+      "title": {
+        "en": "Reported auxiliary heater state"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_mode_restriction": {
+      "type": "enum",
+      "title": {
+        "en": "Mode restriction"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "unlocked",
+          "title": {
+            "en": "Unlocked"
+          }
+        },
+        {
+          "id": "cool",
+          "title": {
+            "en": "Cool only"
+          }
+        },
+        {
+          "id": "heat",
+          "title": {
+            "en": "Heat only"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Reported value"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_fan_restriction": {
+      "type": "enum",
+      "title": {
+        "en": "Fan restriction"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "unlocked",
+          "title": {
+            "en": "Unlocked"
+          }
+        },
+        {
+          "id": "low",
+          "title": {
+            "en": "Low only"
+          }
+        },
+        {
+          "id": "medium",
+          "title": {
+            "en": "Medium only"
+          }
+        },
+        {
+          "id": "high",
+          "title": {
+            "en": "High only"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Reported value"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_cooling_limit_control": {
+      "type": "enum",
+      "title": {
+        "en": "Minimum cooling setpoint"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "unlocked",
+          "title": {
+            "en": "No limit"
+          }
+        },
+        {
+          "id": "17",
+          "title": {
+            "en": "17°C"
+          }
+        },
+        {
+          "id": "18",
+          "title": {
+            "en": "18°C"
+          }
+        },
+        {
+          "id": "19",
+          "title": {
+            "en": "19°C"
+          }
+        },
+        {
+          "id": "20",
+          "title": {
+            "en": "20°C"
+          }
+        },
+        {
+          "id": "21",
+          "title": {
+            "en": "21°C"
+          }
+        },
+        {
+          "id": "22",
+          "title": {
+            "en": "22°C"
+          }
+        },
+        {
+          "id": "23",
+          "title": {
+            "en": "23°C"
+          }
+        },
+        {
+          "id": "24",
+          "title": {
+            "en": "24°C"
+          }
+        },
+        {
+          "id": "25",
+          "title": {
+            "en": "25°C"
+          }
+        },
+        {
+          "id": "26",
+          "title": {
+            "en": "26°C"
+          }
+        },
+        {
+          "id": "27",
+          "title": {
+            "en": "27°C"
+          }
+        },
+        {
+          "id": "28",
+          "title": {
+            "en": "28°C"
+          }
+        },
+        {
+          "id": "29",
+          "title": {
+            "en": "29°C"
+          }
+        },
+        {
+          "id": "30",
+          "title": {
+            "en": "30°C"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Reported value"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_heating_limit_control": {
+      "type": "enum",
+      "title": {
+        "en": "Maximum heating setpoint"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "picker",
+      "values": [
+        {
+          "id": "unlocked",
+          "title": {
+            "en": "No limit"
+          }
+        },
+        {
+          "id": "17",
+          "title": {
+            "en": "17°C"
+          }
+        },
+        {
+          "id": "18",
+          "title": {
+            "en": "18°C"
+          }
+        },
+        {
+          "id": "19",
+          "title": {
+            "en": "19°C"
+          }
+        },
+        {
+          "id": "20",
+          "title": {
+            "en": "20°C"
+          }
+        },
+        {
+          "id": "21",
+          "title": {
+            "en": "21°C"
+          }
+        },
+        {
+          "id": "22",
+          "title": {
+            "en": "22°C"
+          }
+        },
+        {
+          "id": "23",
+          "title": {
+            "en": "23°C"
+          }
+        },
+        {
+          "id": "24",
+          "title": {
+            "en": "24°C"
+          }
+        },
+        {
+          "id": "25",
+          "title": {
+            "en": "25°C"
+          }
+        },
+        {
+          "id": "26",
+          "title": {
+            "en": "26°C"
+          }
+        },
+        {
+          "id": "27",
+          "title": {
+            "en": "27°C"
+          }
+        },
+        {
+          "id": "28",
+          "title": {
+            "en": "28°C"
+          }
+        },
+        {
+          "id": "29",
+          "title": {
+            "en": "29°C"
+          }
+        },
+        {
+          "id": "30",
+          "title": {
+            "en": "30°C"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Reported value"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_remote_lock_control": {
+      "type": "boolean",
+      "title": {
+        "en": "Wireless remote control lock"
+      },
+      "getable": true,
+      "setable": true,
+      "uiComponent": "toggle",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_command_status": {
+      "type": "enum",
+      "title": {
+        "en": "Last command result"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "values": [
+        {
+          "id": "none",
+          "title": {
+            "en": "No command"
+          }
+        },
+        {
+          "id": "selecting",
+          "title": {
+            "en": "Selecting"
+          }
+        },
+        {
+          "id": "queued",
+          "title": {
+            "en": "Queued"
+          }
+        },
+        {
+          "id": "pending",
+          "title": {
+            "en": "Confirming"
+          }
+        },
+        {
+          "id": "confirmed",
+          "title": {
+            "en": "Confirmed"
+          }
+        },
+        {
+          "id": "unconfirmed",
+          "title": {
+            "en": "Not confirmed"
+          }
+        },
+        {
+          "id": "rejected",
+          "title": {
+            "en": "Rejected"
+          }
+        },
+        {
+          "id": "fault",
+          "title": {
+            "en": "Unit fault"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_command_detail": {
+      "type": "string",
+      "title": {
+        "en": "Last command detail"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_fault_label": {
+      "type": "string",
+      "title": {
+        "en": "Fault label (gateway)"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_reported_mode": {
+      "type": "enum",
+      "title": {
+        "en": "Reported mode"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "values": [
+        {
+          "id": "cool",
+          "title": {
+            "en": "Cool"
+          }
+        },
+        {
+          "id": "heat",
+          "title": {
+            "en": "Heat"
+          }
+        },
+        {
+          "id": "dry",
+          "title": {
+            "en": "Dry"
+          }
+        },
+        {
+          "id": "fan",
+          "title": {
+            "en": "Fan only"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Off"
+          }
+        },
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Unknown"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_reported_fan": {
+      "type": "enum",
+      "title": {
+        "en": "Reported fan"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "values": [
+        {
+          "id": "auto",
+          "title": {
+            "en": "Auto"
+          }
+        },
+        {
+          "id": "low",
+          "title": {
+            "en": "Low"
+          }
+        },
+        {
+          "id": "medium",
+          "title": {
+            "en": "Medium"
+          }
+        },
+        {
+          "id": "high",
+          "title": {
+            "en": "High"
+          }
+        },
+        {
+          "id": "off",
+          "title": {
+            "en": "Off"
+          }
+        },
+        {
+          "id": "unknown",
+          "title": {
+            "en": "Unknown"
+          }
+        }
+      ],
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_reported_target": {
+      "type": "number",
+      "title": {
+        "en": "Reported target"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "units": {
+        "en": "°C"
+      },
+      "decimals": 0,
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_reported_power": {
+      "type": "boolean",
+      "title": {
+        "en": "Reported power"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_cooling_limit_status": {
+      "type": "string",
+      "title": {
+        "en": "Cooling lower limit"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_heating_limit_status": {
+      "type": "string",
+      "title": {
+        "en": "Heating upper limit"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_mode_restriction_status": {
+      "type": "string",
+      "title": {
+        "en": "Reported mode restriction"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    },
+    "ccm15_fan_restriction_status": {
+      "type": "string",
+      "title": {
+        "en": "Reported fan restriction"
+      },
+      "getable": true,
+      "setable": false,
+      "uiComponent": "sensor",
+      "icon": "/assets/icon.svg"
+    }
+  },
+  "flow": {
+    "actions": [
+      {
+        "id": "set_temperature",
+        "title": {
+          "en": "Set target temperature"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature"
+            },
+            "min": 17,
+            "max": 30,
+            "step": 1
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set target temperature [[temperature]]"
+        }
+      },
+      {
+        "id": "set_mode",
+        "title": {
+          "en": "Set operating mode"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "cool",
+                "label": {
+                  "en": "Cool"
+                }
+              },
+              {
+                "id": "heat",
+                "label": {
+                  "en": "Heat"
+                }
+              },
+              {
+                "id": "dry",
+                "label": {
+                  "en": "Dry"
+                }
+              },
+              {
+                "id": "fan",
+                "label": {
+                  "en": "Fan only"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              },
+              {
+                "id": "auto",
+                "label": {
+                  "en": "Auto"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set operating mode [[mode]]"
+        }
+      },
+      {
+        "id": "set_fan",
+        "title": {
+          "en": "Set fan speed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "fan",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "auto",
+                "label": {
+                  "en": "Auto"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set fan speed [[fan]]"
+        },
+        "hint": {
+          "en": "Fan Off can only be selected while the indoor is Off. Use power Off to stop a running indoor."
+        }
+      },
+      {
+        "id": "set_climate",
+        "title": {
+          "en": "Set mode, fan and temperature together"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "mode",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "cool",
+                "label": {
+                  "en": "Cool"
+                }
+              },
+              {
+                "id": "heat",
+                "label": {
+                  "en": "Heat"
+                }
+              },
+              {
+                "id": "dry",
+                "label": {
+                  "en": "Dry"
+                }
+              },
+              {
+                "id": "fan",
+                "label": {
+                  "en": "Fan only"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              },
+              {
+                "id": "auto",
+                "label": {
+                  "en": "Auto"
+                }
+              }
+            ]
+          },
+          {
+            "name": "fan",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "auto",
+                "label": {
+                  "en": "Auto"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              }
+            ]
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature"
+            },
+            "min": 17,
+            "max": 30,
+            "step": 1
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set mode, fan and temperature together [[mode]], [[fan]], [[temperature]]"
+        }
+      },
+      {
+        "id": "set_power",
+        "title": {
+          "en": "Switch power"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "power",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "On"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Switch power [[power]]"
+        }
+      },
+      {
+        "id": "set_swing",
+        "title": {
+          "en": "Set swing"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "On"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set swing [[state]]"
+        },
+        "hint": {
+          "en": "Enable swing on a running wall split. Configure the indoor hardware type in its device settings."
+        }
+      },
+      {
+        "id": "set_heater",
+        "title": {
+          "en": "Set auxiliary heater"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "On"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set auxiliary heater [[state]]"
+        },
+        "hint": {
+          "en": "Available only for devices with the matching hardware enabled in their device settings."
+        }
+      },
+      {
+        "id": "refresh_status",
+        "title": {
+          "en": "Refresh status"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "hint": {
+          "en": "Reads the gateway without changing any indoor settings."
+        }
+      },
+      {
+        "id": "set_mode_lock",
+        "title": {
+          "en": "Restrict operating mode"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "unlocked",
+                "label": {
+                  "en": "Unlocked"
+                }
+              },
+              {
+                "id": "cool",
+                "label": {
+                  "en": "Cool only"
+                }
+              },
+              {
+                "id": "heat",
+                "label": {
+                  "en": "Heat only"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Restrict mode to [[value]]"
+        }
+      },
+      {
+        "id": "set_fan_lock",
+        "title": {
+          "en": "Restrict fan speed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "unlocked",
+                "label": {
+                  "en": "Unlocked"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low only"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium only"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High only"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Restrict fan to [[value]]"
+        }
+      },
+      {
+        "id": "set_cooling_limit",
+        "title": {
+          "en": "Set minimum cooling temperature"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature"
+            },
+            "min": 17,
+            "max": 30,
+            "step": 1
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set minimum cooling temperature [[temperature]]"
+        },
+        "hint": {
+          "en": "A restriction on future setpoints; this does not set the current target temperature."
+        }
+      },
+      {
+        "id": "set_heating_limit",
+        "title": {
+          "en": "Set maximum heating temperature"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature"
+            },
+            "min": 17,
+            "max": 30,
+            "step": 1
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set maximum heating temperature [[temperature]]"
+        },
+        "hint": {
+          "en": "A restriction on future setpoints; this does not set the current target temperature."
+        }
+      },
+      {
+        "id": "clear_temperature_limit",
+        "title": {
+          "en": "Remove temperature limit"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "kind",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "coolLimit",
+                "label": {
+                  "en": "Cooling minimum"
+                }
+              },
+              {
+                "id": "heatLimit",
+                "label": {
+                  "en": "Heating maximum"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Remove [[kind]] temperature limit"
+        }
+      },
+      {
+        "id": "set_remote_lock",
+        "title": {
+          "en": "Set wireless remote control lock"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "state",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "on",
+                "label": {
+                  "en": "Locked"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Unlocked"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Set wireless remote control [[state]]"
+        },
+        "hint": {
+          "en": "Locks the wireless remote control (CCM15 Remote Ctrl.). The WDC-86E/KD padlock can indicate any active restriction; this command does not mean its wired keyboard is disabled."
+        }
+      }
+    ],
+    "conditions": [
+      {
+        "id": "is_connected",
+        "title": {
+          "en": "Is connected"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ]
+      },
+      {
+        "id": "is_mode",
+        "title": {
+          "en": "Operating mode is"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "cool",
+                "label": {
+                  "en": "Cool"
+                }
+              },
+              {
+                "id": "heat",
+                "label": {
+                  "en": "Heat"
+                }
+              },
+              {
+                "id": "dry",
+                "label": {
+                  "en": "Dry"
+                }
+              },
+              {
+                "id": "fan",
+                "label": {
+                  "en": "Fan only"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              },
+              {
+                "id": "auto",
+                "label": {
+                  "en": "Auto"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Operating mode is [[value]]"
+        }
+      },
+      {
+        "id": "is_fan",
+        "title": {
+          "en": "Fan speed is"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "value",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "auto",
+                "label": {
+                  "en": "Auto"
+                }
+              },
+              {
+                "id": "low",
+                "label": {
+                  "en": "Low"
+                }
+              },
+              {
+                "id": "medium",
+                "label": {
+                  "en": "Medium"
+                }
+              },
+              {
+                "id": "high",
+                "label": {
+                  "en": "High"
+                }
+              },
+              {
+                "id": "off",
+                "label": {
+                  "en": "Off"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Fan speed is [[value]]"
+        }
+      },
+      {
+        "id": "has_fault",
+        "title": {
+          "en": "Has a fault"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ]
+      },
+      {
+        "id": "temperature_above",
+        "title": {
+          "en": "Room temperature is above"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Temperature"
+            }
+          }
+        ],
+        "titleFormatted": {
+          "en": "Room temperature is above [[temperature]]"
+        }
+      },
+      {
+        "id": "is_locked",
+        "title": {
+          "en": "Has an active restriction"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          },
+          {
+            "name": "kind",
+            "type": "dropdown",
+            "values": [
+              {
+                "id": "mode",
+                "label": {
+                  "en": "Mode"
+                }
+              },
+              {
+                "id": "fan",
+                "label": {
+                  "en": "Fan"
+                }
+              },
+              {
+                "id": "remote",
+                "label": {
+                  "en": "Wireless remote control"
+                }
+              },
+              {
+                "id": "coolLimit",
+                "label": {
+                  "en": "Cooling minimum"
+                }
+              },
+              {
+                "id": "heatLimit",
+                "label": {
+                  "en": "Heating maximum"
+                }
+              }
+            ]
+          }
+        ],
+        "titleFormatted": {
+          "en": "Has an active [[kind]] restriction"
+        }
+      }
+    ],
+    "triggers": [
+      {
+        "id": "connection_changed",
+        "title": {
+          "en": "Connection changed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "connected",
+            "type": "boolean",
+            "title": {
+              "en": "Connected"
+            }
+          }
+        ]
+      },
+      {
+        "id": "state_changed",
+        "title": {
+          "en": "Indoor state changed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "mode",
+            "type": "string",
+            "title": {
+              "en": "Mode"
+            }
+          },
+          {
+            "name": "fan",
+            "type": "string",
+            "title": {
+              "en": "Fan"
+            }
+          },
+          {
+            "name": "temperature",
+            "type": "number",
+            "title": {
+              "en": "Room temperature °C"
+            }
+          },
+          {
+            "name": "target",
+            "type": "number",
+            "title": {
+              "en": "Target temperature °C"
+            }
+          },
+          {
+            "name": "fault",
+            "type": "number",
+            "title": {
+              "en": "Fault code"
+            }
+          },
+          {
+            "name": "swing",
+            "type": "boolean",
+            "title": {
+              "en": "Swing"
+            }
+          },
+          {
+            "name": "heater",
+            "type": "boolean",
+            "title": {
+              "en": "Auxiliary heater"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ccm15_mode_changed",
+        "title": {
+          "en": "Mode changed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "ccm15_mode",
+            "type": "string",
+            "title": {
+              "en": "Mode"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ccm15_fan_changed",
+        "title": {
+          "en": "Fan changed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "ccm15_fan",
+            "type": "string",
+            "title": {
+              "en": "Fan"
+            }
+          }
+        ]
+      },
+      {
+        "id": "ccm15_error_changed",
+        "title": {
+          "en": "Fault code changed"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "ccm15_error",
+            "type": "number",
+            "title": {
+              "en": "Fault code"
+            }
+          }
+        ]
+      },
+      {
+        "id": "command_result",
+        "title": {
+          "en": "Command verification finished"
+        },
+        "args": [
+          {
+            "name": "device",
+            "type": "device",
+            "filter": "driver_id=indoor"
+          }
+        ],
+        "tokens": [
+          {
+            "name": "status",
+            "type": "string",
+            "title": {
+              "en": "Result"
+            }
+          },
+          {
+            "name": "detail",
+            "type": "string",
+            "title": {
+              "en": "Detail"
+            }
+          },
+          {
+            "name": "seconds",
+            "type": "number",
+            "title": {
+              "en": "Seconds"
+            }
+          },
+          {
+            "name": "command_id",
+            "type": "string",
+            "title": {
+              "en": "Command ID"
+            }
+          },
+          {
+            "name": "kind",
+            "type": "string",
+            "title": {
+              "en": "Command type"
+            }
+          },
+          {
+            "name": "slot",
+            "type": "number",
+            "title": {
+              "en": "Indoor slot"
+            }
+          }
+        ]
+      }
+    ]
+  },
+  "contributors": {
+    "developers": [
+      {
+        "name": "HomeOps / calvo-software",
+        "link": "https://github.com/HomeOps/py-ccm15"
+      }
+    ]
+  },
+  "images": {
+    "small": "/assets/images/small.png",
+    "large": "/assets/images/large.png",
+    "xlarge": "/assets/images/xlarge.png"
+  },
+  "discovery": {
+    "ccm15-mac": {
+      "type": "mac",
+      "mac": {
+        "manufacturer": [
+          [
+            0,
+            4,
+            163
+          ]
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "name": "midea-ccm15-local",
+  "version": "0.1.13",
+  "private": true,
+  "description": "Native Homey SDK v3 Midea CCM15 local integration",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "read": "node scripts/read-status.js"
+  }
+}

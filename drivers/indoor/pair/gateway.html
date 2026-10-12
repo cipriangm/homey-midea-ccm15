@@ -1,0 +1,122 @@
+<style>#ccm15-pairing [hidden] { display: none !important; }</style>
+<div id="ccm15-pairing">
+<p>Find your CCM15 gateway, then choose the indoor units to add. Searching only reads information; new devices start with control disabled.</p>
+<button class="homey-button-primary-full" id="find" type="button">Find gateways</button>
+<button class="homey-button-secondary-full" id="cancel" type="button" hidden>Stop searching</button>
+<p id="message" role="status" aria-live="polite"></p>
+<button class="homey-button-primary-full" id="finished" type="button" hidden>Close</button>
+<div id="results"></div>
+<div class="homey-form-group">
+  <label><input id="names" type="checkbox" checked> Use indoor names configured in CCM15</label>
+</div>
+<details>
+  <summary>Search options</summary>
+  <div class="homey-form-group"><label class="homey-form-label" for="range">Local network range</label><input class="homey-form-input" id="range" placeholder="192.168.1.0/24"></div>
+  <p>The suggested /24 block is editable. Search another block if your gateway uses a different network. At most 254 addresses are checked per search.</p>
+  <div class="homey-form-group"><label class="homey-form-label" for="port">HTTP port</label><input class="homey-form-input" id="port" type="number" value="80" min="1" max="65535"></div>
+  <button class="homey-button-secondary-full" id="scan" type="button">Search all addresses in this range</button>
+</details>
+<details id="manual">
+  <summary>Enter a gateway address manually</summary>
+  <form class="homey-form" id="gateway">
+    <div class="homey-form-group"><label class="homey-form-label" for="host">Gateway IP / hostname</label><input class="homey-form-input" id="host" placeholder="192.168.1.100" required></div>
+    <details><summary>Gateway identity</summary>
+      <div class="homey-form-group"><label class="homey-form-label" for="identity">Stable identifier (optional)</label><input class="homey-form-input" id="identity" pattern="[a-zA-Z0-9_-]{1,64}" placeholder="Assigned automatically"></div>
+      <p>Existing gateway identities are reused. Keep the identifier when changing an IP address; do not reuse it for different gateways.</p>
+    </details>
+    <button class="homey-button-primary-full" id="discover" type="submit">Discover indoor units</button>
+  </form>
+</details>
+</div>
+<script>
+(() => {
+'use strict';
+Homey.setTitle('Midea CCM15');
+const root = document.getElementById('ccm15-pairing');
+const byId = id => root.querySelector('#' + id);
+let pollTimer, searchId, configuring = false;
+const resultButtons = new Map();
+function message(text) { byId('message').textContent = text; }
+function searching(value) { byId('find').disabled = value; byId('scan').disabled = value; byId('cancel').hidden = !value; }
+async function stopSearch() {
+  clearTimeout(pollTimer); searchId = null;
+  await Homey.emit('cancel_search').catch(() => {}); searching(false);
+}
+async function configure(host, port) {
+  if (configuring) return;
+  configuring = true;
+  let navigated = false;
+  byId('finished').hidden = true;
+  await stopSearch();
+  byId('discover').disabled = true; byId('find').disabled = true; byId('scan').disabled = true;
+  for (const button of resultButtons.values()) button.disabled = true;
+  message('Reading indoor units and gateway information…');
+  try {
+    await Homey.emit('configure', { host, port, gatewayId: byId('identity').value.trim(), importNames: byId('names').checked });
+    const summary = await Homey.emit('pairing_summary');
+    if (summary.available === 0) {
+      message(summary.total ? 'All ' + summary.total + ' indoor units from this gateway are already added. You can close this window.'
+        : 'No indoor units are currently available from this gateway. You can search again.');
+      byId('finished').hidden = false;
+      return;
+    }
+    await Homey.showView('list_devices');
+    navigated = true;
+  } catch (error) { message(error.message); }
+  finally {
+    configuring = false;
+    if (!navigated) {
+      byId('discover').disabled = false; searching(false);
+      for (const button of resultButtons.values()) button.disabled = button.dataset.empty === 'true';
+    }
+  }
+}
+function showResult(found) {
+  const key = found.host + ':' + found.port;
+  if (resultButtons.has(key)) return;
+  const card = document.createElement('div'); card.className = 'homey-form-group';
+  const title = document.createElement('p');
+  title.textContent = (found.metadata.gateway?.name || 'Midea CCM15') + ' · ' + found.host + ' · ' + found.indoorCount + ' indoor units';
+  card.appendChild(title);
+  const description = document.createElement('p');
+  const names = (found.slots || []).map(slot => found.metadata.rooms?.names[slot]).filter(Boolean).slice(0, 4);
+  description.textContent = names.join(', ') + (names.length && found.indoorCount > names.length ? '…' : '');
+  card.appendChild(description);
+  const button = document.createElement('button'); button.type = 'button'; button.className = 'homey-button-primary-full';
+  button.textContent = 'Use this gateway'; button.disabled = !found.indoorCount; button.dataset.empty = String(!found.indoorCount);
+  button.addEventListener('click', () => configure(found.host, found.port));
+  card.appendChild(button); byId('results').appendChild(card); resultButtons.set(key, button);
+}
+async function pollSearch(id) {
+  try {
+    const state = await Homey.emit('search_status');
+    if (id !== searchId || state.id !== id || configuring) return;
+    state.found.forEach(showResult);
+    const count = state.found.length;
+    if (state.phase === 'done') {
+      searching(false);
+      message(state.error || (state.timedOut ? 'Search time limit reached. ' : '') + (count ? 'Found ' + count + ' gateway(s).' : 'No gateway found. Try searching the full range or enter its address manually.'));
+      return;
+    }
+    message((state.phase === 'network' ? 'Checking local addresses: ' + state.checked + '/' + state.total : 'Checking saved and detected gateways…') + (count ? ' · Found ' + count : ''));
+    pollTimer = setTimeout(() => pollSearch(id), 750);
+  } catch (error) { searching(false); message(error.message); }
+}
+async function startSearch(scanAll) {
+  await stopSearch();
+  byId('finished').hidden = true;
+  resultButtons.clear(); byId('results').replaceChildren(); searching(true);
+  message('Looking for CCM15 gateways…');
+  try {
+    const job = await Homey.emit('start_search', { cidr: byId('range').value.trim(), port: Number(byId('port').value), scanAll });
+    searchId = job.id; await pollSearch(job.id);
+  } catch (error) { searching(false); message(error.message); }
+}
+byId('find').addEventListener('click', () => startSearch(false));
+byId('scan').addEventListener('click', () => startSearch(true));
+byId('cancel').addEventListener('click', async () => { await stopSearch(); message('Search stopped.'); });
+byId('gateway').addEventListener('submit', event => { event.preventDefault(); configure(byId('host').value.trim(), Number(byId('port').value)); });
+byId('finished').addEventListener('click', () => Homey.done());
+Homey.emit('discovery_context').then(context => { if (!byId('range').value) byId('range').value = context.range; }).catch(() => {});
+})();
+</script>
